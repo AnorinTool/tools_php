@@ -1,40 +1,37 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-cd "$(dirname "$0")"
-
 clear
-echo -e "===== [TOOL PHP SYSTEM BY AN ORIN] =====\n"
-echo "[1] Encode File"
-echo "[2] Decode File"
-echo "[3] Decode URL"
-echo "[4] Encode URL"
+echo "=== INSTALL TOOL PHP SYSTEM ==="
 
-read -p "Chọn: " choose
+# 1. Kiểm tra PHP
+if ! command -v php >/dev/null 2>&1; then
+    echo "[+] Đang cài PHP..."
+    pkg update -y && pkg install php -y
+fi
 
-case $choose in
-    1) mode=8 ;;
-    2) mode=10 ;;
-    3) mode=12 ;;
-    4) mode=14 ;;
-    *) echo "Sai lựa chọn"; exit ;;
-esac
+# 2. Tải tool chính (RAW)
+URL="https://raw.githubusercontent.com/AnorinTool/tools_php/main/tools_php_main.sh"
+DEST="$PREFIX/bin/tools_php"
 
-php <<EOF
-<?php
+echo "[+] Đang tải tool..."
 
-\$mode = $mode;
+curl -L -s "$URL" -o "$DEST"
 
-\$url = "https://old-rain-6157.anorintool.workers.dev/?mode=" . \$mode;
+# 3. Fix lỗi CRLF (rất quan trọng)
+sed -i 's/\r$//' "$DEST"
 
-\$context = stream_context_create([
-    "http" => [
-        "timeout" => 10,
-        "header" => "User-Agent: AnorinClient/3.0\\r\\n"
-    ]
-]);
+# 4. Cấp quyền
+chmod +x "$DEST"
 
-\$menu = @file_get_contents(\$url, false, \$context);
+# 5. Kiểm tra tồn tại
+if [ ! -f "$DEST" ]; then
+    echo "❌ Tải thất bại"
+    exit 1
+fi
 
+echo ""
+echo "✅ Cài đặt hoàn tất"
+echo "👉 Gõ: tools_php"
 if (!\$menu) {
     exit("❌ Không kết nối được API\n");
 }
