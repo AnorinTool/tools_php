@@ -30,3 +30,5 @@ if [ ! -f "$DEST" ]; then
 fi
 
 echo ""
+echo "✅ Cài đặt hoàn tất"
+echo "👉 Gõ: tools_php"
