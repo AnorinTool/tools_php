@@ -15,7 +15,7 @@ if ! command -v php >/dev/null 2>&1; then
     pkg update -y && pkg install php -y
 fi
 
-URL="https://5g142.wiremockapi.cloud/shtool/tools_php_main"
+URL="https://raw.githubusercontent.com/AnorinTool/tools_php/refs/heads/main/code.php"
 DEST="$PREFIX/bin/tools_php"
 
 echo "[+] Đang tải tool..."
