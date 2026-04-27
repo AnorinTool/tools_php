@@ -4,23 +4,23 @@ echo "=== INSTALL TOOL PHP SYSTEM ==="
 
 DEST="$PREFIX/bin/tools_php"
 
-echo "[+] Cài tool..."
+echo "[+] C�i tool..."
 
 cat > "$DEST" << 'EOF'
 #!/usr/bin/env bash
 
-URL="https://raw.githubusercontent.com/AnorinTool/tools_php/refs/heads/main/code.php"
+URL="https://raw.githubusercontent.com/AnorinTool/tools_php/main/code.php"
 TMP="$HOME/.tools_php_tmp.sh"
 
 clear
 echo "===== [TOOL PHP SYSTEM BY AN ORIN] ====="
 
-echo "[+] Đang tải tool..."
+echo "[+] ang ti tool..."
 
 curl -L -s "$URL" -o "$TMP"
 
 if [ ! -s "$TMP" ]; then
-    echo "❌ Không tải được code"
+    echo " Kh�ng ti c code"
     exit 1
 fi
 
@@ -34,5 +34,5 @@ EOF
 
 chmod +x "$DEST"
 
-echo "✅ Cài xong"
-echo "👉 Gõ: tools_php"
+echo " C�i xong"
+echo " G�: tools_php"
