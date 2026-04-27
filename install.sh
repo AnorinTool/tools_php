@@ -9,7 +9,7 @@ echo "[+] Cài tool..."
 cat > "$DEST" << 'EOF'
 #!/usr/bin/env bash
 
-URL="https://raw.githubusercontent.com/AnorinTool/tools_php/main/code.php"
+URL="https://raw.githubusercontent.com/AnorinTool/tools_php/refs/heads/main/code.php"
 TMP="$HOME/.tools_php_tmp.sh"
 
 clear
