@@ -1,9 +1,4 @@
-cat > $PREFIX/bin/tools_php << 'EOF'
-#!/data/data/com.termux/files/usr/bin/bash
-
-SELF="$(readlink -f "$0")"
-sed -i 's/\r$//' "$SELF" 2>/dev/null
-
+rm -f $PREFIX/bin/tools_php && printf '%s\n' '#!/data/data/com.termux/files/usr/bin/bash
 URL="https://raw.githubusercontent.com/AnorinTool/tools_php/main/code.php"
 TMP="$HOME/.tools_php_tmp.php"
 
@@ -24,9 +19,9 @@ if [ ! -s "$TMP" ]; then
     exit 1
 fi
 
-tr -d '\r' < "$TMP" > "${TMP}_fix"
+tr -d "\r" < "$TMP" > "${TMP}_fix"
 
 php "${TMP}_fix"
 
 rm -f "$TMP" "${TMP}_fix"
-EOF
+' > $PREFIX/bin/tools_php && chmod +x $PREFIX/bin/tools_php && hash -r
