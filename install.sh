@@ -1,8 +1,10 @@
+rm -f $PREFIX/bin/tools_php
+
 cat > $PREFIX/bin/tools_php << 'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
 URL="https://raw.githubusercontent.com/AnorinTool/tools_php/main/code.php"
-TMP="/data/data/com.termux/files/home/.tools_php_tmp.php"
+TMP="$HOME/.tools_php_tmp.php"
 
 clear
 echo "===== [TOOL PHP SYSTEM BY AN ORIN] ====="
@@ -27,3 +29,5 @@ php "${TMP}_fix"
 
 rm -f "$TMP" "${TMP}_fix"
 EOF
+
+chmod +x $PREFIX/bin/tools_php
