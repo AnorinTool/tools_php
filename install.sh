@@ -1,4 +1,12 @@
-cat > $PREFIX/bin/tools_php << 'EOF'
+#!/usr/bin/env bash
+
+echo "=== INSTALL TOOL PHP SYSTEM ==="
+
+DEST="$PREFIX/bin/tools_php"
+
+echo "[+] Cài tool..."
+
+cat > "$DEST" << 'EOF'
 #!/usr/bin/env bash
 
 URL="https://raw.githubusercontent.com/AnorinTool/tools_php/refs/heads/main/code.php"
@@ -23,3 +31,8 @@ bash "${TMP}_fix"
 
 rm -f "$TMP" "${TMP}_fix"
 EOF
+
+chmod +x "$DEST"
+
+echo "✅ Cài xong"
+echo "👉 Gõ: tools_php"
