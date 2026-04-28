@@ -1,0 +1,18 @@
+Danh Sách Ghi Nhớ dành cho Tool Đặc Biệt Tools_php
+Tool Tools_php là gì? là tool hỗ trợ mã hóa bảo mật và giải mã bảo mật ra
+
+8 = Tool Encode Flie - Tools PHP
+10 = Tool Decode Flie - Tools PHP
+12 = Tool Decode Url - Tools PHP
+14 = Tool Encode Url - Tools PHP
+
+---------------------------------------------
+
+Link Tool: curl -s https://5g142.wiremockapi.cloud/shtool/install_tools_php | tr -d '\r' | bash
+
+Xóa Tool Dưới Đây: 
+rm -f $PREFIX/bin/tools_php
+rm -f ~/bin/tools_php
+hash -r
+
+Lệnh Tool: tools_php
