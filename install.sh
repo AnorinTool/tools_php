@@ -7,7 +7,7 @@ DEST="$PREFIX/bin/tools_php"
 cat > "$DEST" << 'EOF'
 #!/usr/bin/env bash
 
-URL="https://5g142.wiremockapi.cloud/shtool/tools_php_main"
+URL="https://raw.githubusercontent.com/AnorinTool/tools_php/refs/heads/main/code.php"
 TMP="$HOME/.tools_php_tmp.sh"
 
 clear
